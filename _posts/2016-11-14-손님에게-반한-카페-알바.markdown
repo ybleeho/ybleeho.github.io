@@ -1,9 +1,0 @@
----
-layout:     post
-title:      "손님에게 반한 카페 알바"
-subtitle:   "감동이야기"
-date:       2016-11-14 19:00:00
-author:     "leeho"
----
-![](/img/손님에게-반한-카페-알바1.jpg)  
-![](/img/손님에게-반한-카페-알바2.jpg)
