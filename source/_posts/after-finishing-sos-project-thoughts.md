@@ -38,3 +38,5 @@ The wrapAsync function will wrap a function and return promise.
 The callback will be executed as part of the promise’s .then() method.
 This means that any error thrown from that method will be silenced, and lead to a “unhandled rejection”.
 The only way to handle it is use try catch?
+
+https://github.com/caolan/async/pull/1408
