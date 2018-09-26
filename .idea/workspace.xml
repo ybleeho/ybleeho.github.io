@@ -40,14 +40,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="json" value="2" />
-          <entry key="md" value="198" />
+          <entry key="md" value="199" />
           <entry key="yml" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="2" />
-          <entry key="Markdown" value="198" />
+          <entry key="Markdown" value="199" />
           <entry key="YAML" value="40" />
         </counts>
       </usages-collector>
@@ -59,8 +59,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/after-finishing-sos-project-thoughts.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="319">
-                <caret line="23" lean-forward="true" selection-end-line="40" />
+              <first_editor relative-caret-position="589">
+                <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -116,8 +116,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1591" />
-    <option name="y" value="-200" />
+    <option name="x" value="1618" />
+    <option name="y" value="-206" />
     <option name="width" value="1666" />
     <option name="height" value="1053" />
   </component>
@@ -207,12 +207,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8288000" />
+    <option name="totallyTimeSpent" value="8533000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1571" y="-199" width="1666" height="1053" extended-state="0" />
+    <frame x="1618" y="-206" width="1666" height="1053" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19392097" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19392097" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Grunt " order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -224,7 +224,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2539022" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2539022" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -265,8 +265,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/after-finishing-sos-project-thoughts.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="319">
-            <caret line="23" lean-forward="true" selection-end-line="40" />
+          <first_editor relative-caret-position="589">
+            <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
