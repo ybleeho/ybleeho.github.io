@@ -5,12 +5,12 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://ybleeho.github.io">
+  <link rel="dns-prefetch" href="https://ybleeho.github.io/public">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://ybleeho.github.io/index.html">
+<meta property="og:url" content="https://ybleeho.github.io/public/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
@@ -151,35 +151,38 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-after-finishing-sos-project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/26/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/09/26/after-finishing-sos-project/">after-finishing-sos-project</a>
     </h1>
   
 
         
-        <a href="/2018/08/26/hello-world/" class="archive-article-date">
-  	<time datetime="2018-08-26T13:00:06.418Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-26</time>
+        <a href="/2018/09/26/after-finishing-sos-project/" class="archive-article-date">
+  	<time datetime="2018-09-26T09:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="Jwts-vs-Sessions"><a href="#Jwts-vs-Sessions" class="headerlink" title="Jwts vs Sessions"></a>Jwts vs Sessions</h2><h3 id="1-可扩展性"><a href="#1-可扩展性" class="headerlink" title="1.可扩展性"></a>1.可扩展性</h3><p>session是有状态的，token是无状态的，所以如果多台服务器上的应用，单点登录，基于token 的验证是有优势的。<br>构建但服务器应用，不需要RESTful API的，那么session也不错。</p>
+<h3 id="2-安全性"><a href="#2-安全性" class="headerlink" title="2.安全性"></a>2.安全性</h3><p>jwt最好使用https</p>
+<h3 id="3-RESTful"><a href="#3-RESTful" class="headerlink" title="3.RESTful"></a>3.RESTful</h3><p>无状态，token更契合RESTful</p>
+<h3 id="4-性能"><a href="#4-性能" class="headerlink" title="4.性能"></a>4.性能</h3><p>当数据少时没多大差别，但一旦claim多，开销比session大得多。所以session是有优势的。<br>（<a href="https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens" target="_blank" rel="external">https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens</a> ）<br>If we store the ID in a cookie, the size is 6 bytes. If store the ID in a JWT ,the size has now inflated to 304 bytes.</p>
+<h3 id="5-实效性"><a href="#5-实效性" class="headerlink" title="5.实效性"></a>5.实效性</h3><p>session是可以手动删除的，这也是比token的优势。</p>
+<p>解决办法：token存入数据库，可以实现token实效的功能，比如只能有一个用于登陆的状态，那么把token存入数据库，每次登陆更新token。</p>
+<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p><a href="https://cnodejs.org/topic/5b568ec12860af042a217822" target="_blank" rel="external">https://cnodejs.org/topic/5b568ec12860af042a217822</a></p>
+<p><a href="https://juejin.im/post/5a437441f265da43294e54c3" target="_blank" rel="external">https://juejin.im/post/5a437441f265da43294e54c3</a></p>
+<p><a href="https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens" target="_blank" rel="external">https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens</a> （主要描述token的弊端）</p>
+<hr>
+<h2 id="async-Make-errors-in-callbacks-throw-globally"><a href="#async-Make-errors-in-callbacks-throw-globally" class="headerlink" title="async Make errors in callbacks throw globally"></a>async Make errors in callbacks throw globally</h2><p>The wrapAsync function will wrap a function and return promise.<br>The callback will be executed as part of the promise’s .then() method.<br>This means that any error thrown from that method will be silenced, and lead to a “unhandled rejection”.<br>The only way to handle it is use try catch?</p>
+<p><a href="https://github.com/caolan/async/pull/1408" target="_blank" rel="external">https://github.com/caolan/async/pull/1408</a></p>
 
       
 
@@ -192,7 +195,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/26/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/26/after-finishing-sos-project/">展开全文 >></a>
         </p>
       
 

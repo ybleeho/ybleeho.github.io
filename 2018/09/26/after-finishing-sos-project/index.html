@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ybleeho.github.io/public">
-  <title>Archives | Hexo</title>
+  <title>after-finishing-sos-project | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://ybleeho.github.io/public/archives/index.html">
+  <meta name="description" content="Jwts vs Sessions1.可扩展性session是有状态的，token是无状态的，所以如果多台服务器上的应用，单点登录，基于token 的验证是有优势的。构建但服务器应用，不需要RESTful API的，那么session也不错。 2.安全性jwt最好使用https 3.RESTful无状态，token更契合RESTful 4.性能当数据少时没多大差别，但一旦claim多，开销比sess">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="after-finishing-sos-project">
+<meta property="og:url" content="https://ybleeho.github.io/public/2018/09/26/after-finishing-sos-project/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Jwts vs Sessions1.可扩展性session是有状态的，token是无状态的，所以如果多台服务器上的应用，单点登录，基于token 的验证是有优势的。构建但服务器应用，不需要RESTful API的，那么session也不错。 2.安全性jwt最好使用https 3.RESTful无状态，token更契合RESTful 4.性能当数据少时没多大差别，但一旦claim多，开销比sess">
+<meta property="og:updated_time" content="2018-09-26T10:00:07.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="after-finishing-sos-project">
+<meta name="twitter:description" content="Jwts vs Sessions1.可扩展性session是有状态的，token是无状态的，所以如果多台服务器上的应用，单点登录，基于token 的验证是有优势的。构建但服务器应用，不需要RESTful API的，那么session也不错。 2.安全性jwt最好使用https 3.RESTful无状态，token更契合RESTful 4.性能当数据少时没多大差别，但一旦claim多，开销比sess">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,49 +154,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-after-finishing-sos-project" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/26/after-finishing-sos-project/" class="archive-article-date">
-  	<time datetime="2018-09-26T09:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/26/after-finishing-sos-project/">after-finishing-sos-project</a>
+    <h1 class="article-title" itemprop="name">
+      after-finishing-sos-project
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2018/09/26/after-finishing-sos-project/" class="archive-article-date">
+  	<time datetime="2018-09-26T09:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Jwts-vs-Sessions"><a href="#Jwts-vs-Sessions" class="headerlink" title="Jwts vs Sessions"></a>Jwts vs Sessions</h2><h3 id="1-可扩展性"><a href="#1-可扩展性" class="headerlink" title="1.可扩展性"></a>1.可扩展性</h3><p>session是有状态的，token是无状态的，所以如果多台服务器上的应用，单点登录，基于token 的验证是有优势的。<br>构建但服务器应用，不需要RESTful API的，那么session也不错。</p>
+<h3 id="2-安全性"><a href="#2-安全性" class="headerlink" title="2.安全性"></a>2.安全性</h3><p>jwt最好使用https</p>
+<h3 id="3-RESTful"><a href="#3-RESTful" class="headerlink" title="3.RESTful"></a>3.RESTful</h3><p>无状态，token更契合RESTful</p>
+<h3 id="4-性能"><a href="#4-性能" class="headerlink" title="4.性能"></a>4.性能</h3><p>当数据少时没多大差别，但一旦claim多，开销比session大得多。所以session是有优势的。<br>（<a href="https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens" target="_blank" rel="external">https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens</a> ）<br>If we store the ID in a cookie, the size is 6 bytes. If store the ID in a JWT ,the size has now inflated to 304 bytes.</p>
+<h3 id="5-实效性"><a href="#5-实效性" class="headerlink" title="5.实效性"></a>5.实效性</h3><p>session是可以手动删除的，这也是比token的优势。</p>
+<p>解决办法：token存入数据库，可以实现token实效的功能，比如只能有一个用于登陆的状态，那么把token存入数据库，每次登陆更新token。</p>
+<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p><a href="https://cnodejs.org/topic/5b568ec12860af042a217822" target="_blank" rel="external">https://cnodejs.org/topic/5b568ec12860af042a217822</a></p>
+<p><a href="https://juejin.im/post/5a437441f265da43294e54c3" target="_blank" rel="external">https://juejin.im/post/5a437441f265da43294e54c3</a></p>
+<p><a href="https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens" target="_blank" rel="external">https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens</a> （主要描述token的弊端）</p>
+<hr>
+<h2 id="async-Make-errors-in-callbacks-throw-globally"><a href="#async-Make-errors-in-callbacks-throw-globally" class="headerlink" title="async Make errors in callbacks throw globally"></a>async Make errors in callbacks throw globally</h2><p>The wrapAsync function will wrap a function and return promise.<br>The callback will be executed as part of the promise’s .then() method.<br>This means that any error thrown from that method will be silenced, and lead to a “unhandled rejection”.<br>The only way to handle it is use try catch?</p>
+<p><a href="https://github.com/caolan/async/pull/1408" target="_blank" rel="external">https://github.com/caolan/async/pull/1408</a></p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ybleeho.github.io/public/2018/09/26/after-finishing-sos-project/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -214,8 +327,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
