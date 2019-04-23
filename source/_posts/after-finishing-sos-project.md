@@ -41,3 +41,5 @@ This means that any error thrown from that method will be silenced, and lead to 
 The only way to handle it is use try catch?
 
 https://github.com/caolan/async/pull/1408
+
+
