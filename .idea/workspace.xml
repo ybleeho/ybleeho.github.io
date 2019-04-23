@@ -5,8 +5,7 @@
       <change afterPath="$PROJECT_DIR$/themes/yilia/source/resume/1111.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/yilia/source/resume/index.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/yilia/source/resume/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/resume/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/resume/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/yilia" beforeDir="false" afterPath="$PROJECT_DIR$/themes/yilia" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/yilia/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/yilia/_config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -293,18 +292,17 @@
       <workItem from="1555926857901" duration="3837000" />
       <workItem from="1556007200099" duration="1426000" />
       <workItem from="1556008831477" duration="753000" />
-      <workItem from="1556026184611" duration="4336000" />
+      <workItem from="1556026184611" duration="4511000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22903000" />
+    <option name="totallyTimeSpent" value="23078000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="800" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Grunt " order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -316,7 +314,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49964765" visible="true" weight="0.32768363" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49964765" visible="true" weight="0.460452" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.30528587" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
