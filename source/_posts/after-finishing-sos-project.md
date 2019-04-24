@@ -1,5 +1,5 @@
 ---
-title: after-finishing-sos-project
+title: Jwts vs Sessions总结
 date: 2018-09-26 17:58:08
 ---
 
@@ -32,14 +32,5 @@ https://juejin.im/post/5a437441f265da43294e54c3
 https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens （主要描述token的弊端）
 
 ---
-
-## async Make errors in callbacks throw globally
-
-The wrapAsync function will wrap a function and return promise.
-The callback will be executed as part of the promise’s .then() method.
-This means that any error thrown from that method will be silenced, and lead to a “unhandled rejection”.
-The only way to handle it is use try catch?
-
-https://github.com/caolan/async/pull/1408
 
 
