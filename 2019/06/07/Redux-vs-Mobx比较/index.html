@@ -6,18 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1. 趋势上图是npm近半年Redux和Mobx下载情况，使用Redux进行状态管理的还是大多数。 2. 风格   Redux Mobx     Functional Programming Object-oriented + Reactive programming   大量模版文件和代码 少量模版文件和代码   需要处理一步的中间件如thunk,saga 不需要thunk    3.状态管理">
+    <meta name="description" content="1. Community 2. Style   Redux Mobx     Functional Programming Object-oriented + Reactive programming   大量模版文件和代码 少量模版文件和代码   需要处理一步的中间件如thunk,saga 不需要thunk    3.Management   Redux Mobx     通常单一store 多">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redux vs Mobx比较">
 <meta property="og:url" content="https://ybleeho.github.io/public/2019/06/07/Redux-vs-Mobx比较/index.html">
 <meta property="og:site_name" content="ybleeho">
-<meta property="og:description" content="1. 趋势上图是npm近半年Redux和Mobx下载情况，使用Redux进行状态管理的还是大多数。 2. 风格   Redux Mobx     Functional Programming Object-oriented + Reactive programming   大量模版文件和代码 少量模版文件和代码   需要处理一步的中间件如thunk,saga 不需要thunk    3.状态管理">
+<meta property="og:description" content="1. Community 2. Style   Redux Mobx     Functional Programming Object-oriented + Reactive programming   大量模版文件和代码 少量模版文件和代码   需要处理一步的中间件如thunk,saga 不需要thunk    3.Management   Redux Mobx     通常单一store 多">
 <meta property="og:image" content="https://ybleeho.github.io/images/redux-mobx.png">
-<meta property="og:updated_time" content="2019-06-07T04:23:10.939Z">
+<meta property="og:image" content="https://ybleeho.github.io/images/stats.png">
+<meta property="og:updated_time" content="2019-06-14T00:21:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux vs Mobx比较">
-<meta name="twitter:description" content="1. 趋势上图是npm近半年Redux和Mobx下载情况，使用Redux进行状态管理的还是大多数。 2. 风格   Redux Mobx     Functional Programming Object-oriented + Reactive programming   大量模版文件和代码 少量模版文件和代码   需要处理一步的中间件如thunk,saga 不需要thunk    3.状态管理">
+<meta name="twitter:description" content="1. Community 2. Style   Redux Mobx     Functional Programming Object-oriented + Reactive programming   大量模版文件和代码 少量模版文件和代码   需要处理一步的中间件如thunk,saga 不需要thunk    3.Management   Redux Mobx     通常单一store 多">
 <meta name="twitter:image" content="https://ybleeho.github.io/images/redux-mobx.png">
     
     
@@ -73,6 +74,8 @@
         <li><a class="icon" href="/2019/05/18/sequelize-关于warning-a-promise-was-created-but-was-not-returned-from-it/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
+        <li><a class="icon" href="/2019/06/23/Mobx-vs-Mobx-State-Tree-MST/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
@@ -98,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-趋势"><span class="toc-number">1.</span> <span class="toc-text">1. 趋势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-风格"><span class="toc-number">2.</span> <span class="toc-text">2. 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-状态管理"><span class="toc-number">3.</span> <span class="toc-text">3.状态管理</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Community"><span class="toc-number">1.</span> <span class="toc-text">1. Community</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Style"><span class="toc-number">2.</span> <span class="toc-text">2. Style</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Management"><span class="toc-number">3.</span> <span class="toc-text">3.Management</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -137,8 +140,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h3 id="1-趋势"><a href="#1-趋势" class="headerlink" title="1. 趋势"></a>1. 趋势</h3><p><img src="/images/redux-mobx.png" width="800" height="400"><br>上图是npm近半年Redux和Mobx下载情况，使用Redux进行状态管理的还是大多数。</p>
-<h3 id="2-风格"><a href="#2-风格" class="headerlink" title="2. 风格"></a>2. 风格</h3><table>
+    <h3 id="1-Community"><a href="#1-Community" class="headerlink" title="1. Community"></a>1. Community</h3><p><img src="/images/redux-mobx.png" width="800" height="400"><br><img src="/images/stats.png"></p>
+<h3 id="2-Style"><a href="#2-Style" class="headerlink" title="2. Style"></a>2. Style</h3><table>
 <thead>
 <tr>
 <th>Redux</th>
@@ -160,7 +163,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="3-状态管理"><a href="#3-状态管理" class="headerlink" title="3.状态管理"></a>3.状态管理</h3><table>
+<h3 id="3-Management"><a href="#3-Management" class="headerlink" title="3.Management"></a>3.Management</h3><table>
 <thead>
 <tr>
 <th>Redux</th>
@@ -207,7 +210,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-趋势"><span class="toc-number">1.</span> <span class="toc-text">1. 趋势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-风格"><span class="toc-number">2.</span> <span class="toc-text">2. 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-状态管理"><span class="toc-number">3.</span> <span class="toc-text">3.状态管理</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Community"><span class="toc-number">1.</span> <span class="toc-text">1. Community</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Style"><span class="toc-number">2.</span> <span class="toc-text">2. Style</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Management"><span class="toc-number">3.</span> <span class="toc-text">3.Management</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

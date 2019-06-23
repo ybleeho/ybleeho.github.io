@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/index.html">
 <meta property="og:site_name" content="ybleeho">
 <meta property="og:description" content="SQL标准定义了四种隔离级别，但在Postgresql中只有三个级别，所以所选的隔离级别比SQL标准或者Mysql高一个级别。 Read committed在其中的select语句可以看到语句进行之前已经commit的事务的结果也就是说在一个transaction中 select 可能会获得两个不同的结果，但是select可以看到在这个事务中已经update的结果只是不能看到其他事务未提交之前的结">
-<meta property="og:updated_time" content="2019-05-04T00:53:14.424Z">
+<meta property="og:updated_time" content="2019-05-04T00:53:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Postgresql事务隔离界别的总结">
 <meta name="twitter:description" content="SQL标准定义了四种隔离级别，但在Postgresql中只有三个级别，所以所选的隔离级别比SQL标准或者Mysql高一个级别。 Read committed在其中的select语句可以看到语句进行之前已经commit的事务的结果也就是说在一个transaction中 select 可能会获得两个不同的结果，但是select可以看到在这个事务中已经update的结果只是不能看到其他事务未提交之前的结">
