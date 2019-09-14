@@ -13,12 +13,12 @@
 <meta property="og:url" content="https://ybleeho.github.io/public/2019/09/14/Android-开发笔记-常见的构架原则/index.html">
 <meta property="og:site_name" content="ybleeho">
 <meta property="og:description" content="分离关注点要遵循的最重要的原则是分离关注点。一种常见的错误是在一个 Activity 或 Fragment 中编写所有代码。这些基于界面的类应仅包含处理界面和操作系统交互的逻辑。您应尽可能使这些类保持精简，这样可以避免许多与生命周期相关的问题。 通过模型驱动界面模型是负责处理应用数据的组件。它们独立于应用中的 View 对象和应用组件，因此不受应用的生命周期以及相关的关注点的影响。 持久性是理想之">
-<meta property="og:image" content="https://ybleeho.github.io/public/2019/09/14/Android-开发笔记-常见的构架原则/images/final-architecture.png">
-<meta property="og:updated_time" content="2019-09-14T14:57:22.677Z">
+<meta property="og:image" content="https://ybleeho.github.io/images/final-architecture.png">
+<meta property="og:updated_time" content="2019-09-14T15:12:24.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android-开发笔记-常见的构架原则">
 <meta name="twitter:description" content="分离关注点要遵循的最重要的原则是分离关注点。一种常见的错误是在一个 Activity 或 Fragment 中编写所有代码。这些基于界面的类应仅包含处理界面和操作系统交互的逻辑。您应尽可能使这些类保持精简，这样可以避免许多与生命周期相关的问题。 通过模型驱动界面模型是负责处理应用数据的组件。它们独立于应用中的 View 对象和应用组件，因此不受应用的生命周期以及相关的关注点的影响。 持久性是理想之">
-<meta name="twitter:image" content="https://ybleeho.github.io/public/2019/09/14/Android-开发笔记-常见的构架原则/images/final-architecture.png">
+<meta name="twitter:image" content="https://ybleeho.github.io/images/final-architecture.png">
     
     
         
@@ -144,7 +144,7 @@
 <li>如果 Android 操作系统销毁应用以释放资源，用户不会丢失数据。</li>
 <li>当网络连接不稳定或不可用时，应用会继续工作。</li>
 </ul>
-<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p><img src="./images/final-architecture.png" alt title="Title"></p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p><img src="/images/final-architecture.png" alt title="Title"></p>
 <h1 id="最佳做法"><a href="#最佳做法" class="headerlink" title="最佳做法"></a>最佳做法</h1><ul>
 <li>避免将应用的入口点（如 Activity、Service 和广播接收器）指定为数据源。</li>
 <li>在应用的各个模块之间设定明确定义的职责界限。</li>
