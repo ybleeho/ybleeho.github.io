@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="SQL标准定义了四种隔离级别，但在Postgresql中只有三个级别，所以所选的隔离级别比SQL标准或者Mysql高一个级别。 Read committed在其中的select语句可以看到语句进行之前已经commit的事务的结果也就是说在一个transaction中 select 可能会获得两个不同的结果，但是select可以看到在这个事务中已经update的结果只是不能看到其他事务未提交之前的结">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Postgresql事务隔离界别的总结">
+<meta property="og:url" content="https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="SQL标准定义了四种隔离级别，但在Postgresql中只有三个级别，所以所选的隔离级别比SQL标准或者Mysql高一个级别。 Read committed在其中的select语句可以看到语句进行之前已经commit的事务的结果也就是说在一个transaction中 select 可能会获得两个不同的结果，但是select可以看到在这个事务中已经update的结果只是不能看到其他事务未提交之前的结">
+<meta property="og:updated_time" content="2019-05-04T00:53:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Postgresql事务隔离界别的总结">
+<meta name="twitter:description" content="SQL标准定义了四种隔离级别，但在Postgresql中只有三个级别，所以所选的隔离级别比SQL标准或者Mysql高一个级别。 Read committed在其中的select语句可以看到语句进行之前已经commit的事务的结果也就是说在一个transaction中 select 可能会获得两个不同的结果，但是select可以看到在这个事务中已经update的结果只是不能看到其他事务未提交之前的结">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Postgresql事务隔离界别的总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/24/Sequelize为什么需要使用Maigration/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/18/sequelize-关于warning-a-promise-was-created-but-was-not-returned-from-it/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&text=Postgresql事务隔离界别的总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&is_video=false&description=Postgresql事务隔离界别的总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Postgresql事务隔离界别的总结&body=Check out this article: https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&name=Postgresql事务隔离界别的总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Read-committed"><span class="toc-number">1.</span> <span class="toc-text">Read committed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Repeatable-和-Serializable"><span class="toc-number">2.</span> <span class="toc-text">Repeatable 和 Serializable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Postgresql事务隔离界别的总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-05-04T00:30:40.000Z" itemprop="datePublished">2019-05-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>SQL标准定义了四种隔离级别，但在Postgresql中只有三个级别，所以所选的隔离级别比<br>SQL标准或者Mysql高一个级别。</p>
+<h3 id="Read-committed"><a href="#Read-committed" class="headerlink" title="Read committed"></a>Read committed</h3><p>在其中的select语句可以看到语句进行之前已经commit的事务的结果<br>也就是说在一个transaction中 select 可能会获得两个不同的结果，<br>但是select可以看到在这个事务中已经update的结果只是不能看到其他事务未提交之前的结果。<br>在官方文档上有一个有趣的例子。两个网页的点击量是9和10，现在有这样的两个事务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BEGIN;</span><br><span class="line">UPDATE website SET hits = hits + 1;</span><br><span class="line">-- run from another session:  DELETE FROM website WHERE hits = 10;</span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure></p>
+<p>执行这两个事务后之前点击量9和10的网页都没有删除。<br>原因是因为在更新之前9不等于10所以被skip掉，然后这个事物想删除更新之前是10的网页，<br>等待update释放锁，当update事务完成后 Read committed 级别有一个nonrepeatable read（在读已提交模式中，每个命令都是从一个新的快照开始），<br>发现现在的值为11，所以不满足条件，所以两条数据都没有被删除。</p>
+<h3 id="Repeatable-和-Serializable"><a href="#Repeatable-和-Serializable" class="headerlink" title="Repeatable 和 Serializable"></a>Repeatable 和 Serializable</h3><p>Repeatable 和 Serializable 的级别是最高的他们的区别在于幻读。<br>事实上，这个级别完全像可重复读一样地工作，除了它会监视一些条件，<br>这些条件可能导致一个可序列化事务的并发集合的执行产生的行为与这些事务所有可能的序列化<br>（一次一个）执行不一致。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class | value</span><br><span class="line">-------+-------</span><br><span class="line">     1 |    10</span><br><span class="line">     1 |    20</span><br><span class="line">     2 |   100</span><br><span class="line">     2 |   200</span><br></pre></td></tr></table></figure></p>
+<p>第一个事务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(value) FROM mytab WHERE class = 1;</span><br></pre></td></tr></table></figure></p>
+<p>然后将结果以class = 2 插入表</p>
+<p>第二个并发事务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(value) FROM mytab WHERE class = 2;</span><br></pre></td></tr></table></figure></p>
+<p>如果是 Repeatable级别那么所得到的结果是300，而且两个事务都能提交，之后如果查询class =2 的 和得到的是330。<br>姨？不是300吗？这就是 Repeatable欢度的结果，而如果 是Serializable 级别的话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR:  could not serialize access due to read/write dependencies among transactions</span><br></pre></td></tr></table></figure></p>
+<p>一个事务能提交，而另一个事务会出现这个错误</p>
+<ul>
+<li>注意：在Postgresql中默认的级别是Read Committed 而 Mysql中默认的级别是Repeatable Read 级别</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在psql中Read Committed 可以应付大多数情况，而repeableread 和 serialiable<br>需要 操作由徐立华冲突带来的错误进行再一次的提交。注意的一点是<br>只有更新事务可能需要被重试；只读事务将永远不会有序列化冲突。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Read-committed"><span class="toc-number">1.</span> <span class="toc-text">Read committed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Repeatable-和-Serializable"><span class="toc-number">2.</span> <span class="toc-text">Repeatable 和 Serializable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&text=Postgresql事务隔离界别的总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&is_video=false&description=Postgresql事务隔离界别的总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Postgresql事务隔离界别的总结&body=Check out this article: https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&title=Postgresql事务隔离界别的总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2019/05/04/Postgresql并发控制之事务隔离界别的总结/&name=Postgresql事务隔离界别的总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
