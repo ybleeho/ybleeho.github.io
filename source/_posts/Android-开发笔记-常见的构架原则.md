@@ -18,7 +18,7 @@ tags:
 * 当网络连接不稳定或不可用时，应用会继续工作。
 
 # 架构
-![](./../images/final-architecture.png "Title")
+![](/images/final-architecture.png "Title")
 
 # 最佳做法
 
