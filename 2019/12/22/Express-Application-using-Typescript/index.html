@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Install dependencies 12yarn add @types/node @types/express ts-node typescript nodemon --devyarn add express Create a file in root of your application or run ```npx tsc --init```  12 //more about compi">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Express Application using Typescript">
+<meta property="og:url" content="https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="Install dependencies 12yarn add @types/node @types/express ts-node typescript nodemon --devyarn add express Create a file in root of your application or run ```npx tsc --init```  12 //more about compi">
+<meta property="og:updated_time" content="2019-12-22T12:23:32.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Express Application using Typescript">
+<meta name="twitter:description" content="Install dependencies 12yarn add @types/node @types/express ts-node typescript nodemon --devyarn add express Create a file in root of your application or run ```npx tsc --init```  12 //more about compi">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Express Application using Typescript</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/12/17/Swift学习之算法/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&text=Express Application using Typescript"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&is_video=false&description=Express Application using Typescript"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Express Application using Typescript&body=Check out this article: https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&name=Express Application using Typescript&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Express Application using Typescript
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-12-22T06:58:28.000Z" itemprop="datePublished">2019-12-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Install dependencies</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @types/node @types/express ts-node typescript nodemon --dev</span><br><span class="line">yarn add express</span><br></pre></td></tr></table></figure>
+<p>Create a <figure class="highlight plain"><figcaption><span>file in root of your application or run ```npx tsc --init```  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>//more about compile options<br>//<a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank" rel="external">https://www.typescriptlang.org/docs/handbook/compiler-options.html</a><br>{<br>“compilerOptions”:<br>  {<br>  “target”: “es6”,<br>  “module”: “commonjs”,<br>  “allowJs”: true,<br>  “outDir”: “./build”,<br>  “rootDir”: “./src”,<br>  “esModuleInterop”: true<br>  }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Add scripts to package.json file.</span><br></pre></td></tr></table></figure></p>
+<p> “scripts”: {<br>    “dev”: “nodemon src/server.ts”,<br>    “start”: “ts-node dist/server.js”,<br>    “build”: “tsc -p .”<br>  },<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">File structure</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>dist</li>
+<li>node_modules</li>
+<li>src<br>package.json<br>tsconfig.json</li>
+</ul>
+<p>//src</p>
+<ul>
+<li>controllers</li>
+<li>interfaces</li>
+<li>middleware<br>app.ts<br>server.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Edit app.ts</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>import * as express from ‘express’<br>import {Application} from ‘express’</p>
+<p>class App {<br>    public app: Application<br>    public port: number</p>
+<pre><code>constructor(appInit: {port: number; middleWares: any; controllers: any;}) {
+    this.app = express()
+    this.port = appInit.port
+    this.middlewares(appInit.middleWares)
+    this.routes(appInit.controllers)
+}
+
+private middlewares(middleWares: { forEach: (arg0: (middleWare: any) =&gt; void) =&gt; void; }) {
+    middleWares.forEach(middleWare =&gt; {
+        this.app.use(middleWare)
+    })
+}
+
+private routes(controllers: { forEach: (arg0: (controller: any) =&gt; void) =&gt; void; }) {
+    controllers.forEach(controller =&gt; {
+        this.app.use(&apos;/&apos;, controller.router)
+    })
+}
+
+public listen() {
+    this.app.listen(this.port, () =&gt; {
+        console.log(`App listening on the    http://localhost:${this.port}`)
+    })
+}
+</code></pre><p>}</p>
+<p>export default App</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Edit server.ts</span><br></pre></td></tr></table></figure>
+<p>import App from ‘./app’</p>
+<p>import * as bodyParser from ‘body-parser’<br>import loggerMiddleware from ‘./middleware/logger’;<br>import AuthController from ‘./controllers/auth.controller’</p>
+<p>const app = new App({<br>    port: 3000,<br>    controllers: [<br>        new AuthController()<br>    ],<br>    middleWares: [<br>        bodyParser.json(),<br>        bodyParser.urlencoded({extended: true}),<br>        loggerMiddleware<br>    ]<br>})</p>
+<p>app.listen()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Add middleware</span><br></pre></td></tr></table></figure></p>
+<p>import {Request, Response} from “express”</p>
+<p>const loggerMiddleware = (req: Request, res: Response, next) =&gt; {<br>    console.log(‘Request logged:’, req.method, req.path)<br>    next()<br>}</p>
+<p>export default loggerMiddleware</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Add base  controller interface</span><br></pre></td></tr></table></figure>
+<p>interface IControllerBase {<br>    initRoutes(): any<br>}</p>
+<p>export default IControllerBase<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Add controller</span><br></pre></td></tr></table></figure></p>
+<p>import * as express from ‘express’<br>import { Request, Response } from ‘express’<br>import IControllerBase from ‘../interfaces/IControllerBase.interface’</p>
+<p>class AuthController implements IControllerBase {<br>    public path = ‘/login’<br>    public router = express.Router()</p>
+<pre><code>constructor() {
+    this.initRoutes()
+}
+
+public initRoutes() {
+    this.router.get(this.path, this.login)
+}
+
+login = (req: Request, res: Response) =&gt; {
+    res.json({message: &apos;ok&apos;})
+}
+</code></pre><p>}</p>
+<p>export default AuthController<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Run the app</span><br></pre></td></tr></table></figure></p>
+<p>yarn run dev<br><code>`</code></p>
+<blockquote>
+<p>TODO:</p>
+<p>1.Connect to postgressql &amp; Create model with Typescript definitations </p>
+<p><a href="https://sequelize.org/v5/manual/typescript.html" target="_blank" rel="external">https://sequelize.org/v5/manual/typescript.html</a></p>
+<p>use sequelize-cli to generate typescript model is better</p>
+<p>2.Controllers =&gt; Seperation of  route and logic</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&text=Express Application using Typescript"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&is_video=false&description=Express Application using Typescript"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Express Application using Typescript&body=Check out this article: https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&title=Express Application using Typescript"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2019/12/22/Express-Application-using-Typescript/&name=Express Application using Typescript&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
