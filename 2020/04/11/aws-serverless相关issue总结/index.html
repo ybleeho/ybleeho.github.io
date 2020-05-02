@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/index.html">
 <meta property="og:site_name" content="ybleeho">
 <meta property="og:description" content="关于sam local start-api很慢的问题 解决办法：不用每次pull image， 可以 skip pull image sam local start-api --skip-pull-image。 诶， 但mounting还是很慢，有没有keep docker container warm)的方法，看起来目前issue还是open状态，sam还不支持 keep warm。  关于s">
-<meta property="og:updated_time" content="2020-04-11T01:57:33.863Z">
+<meta property="og:updated_time" content="2020-04-11T03:39:05.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="aws中国区serverless相关issue总结">
 <meta name="twitter:description" content="关于sam local start-api很慢的问题 解决办法：不用每次pull image， 可以 skip pull image sam local start-api --skip-pull-image。 诶， 但mounting还是很慢，有没有keep docker container warm)的方法，看起来目前issue还是open状态，sam还不支持 keep warm。  关于s">
@@ -70,6 +70,8 @@
         
         <li><a class="icon" href="/2019/12/22/Express-Application-using-Typescript/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
+        
+        <li><a class="icon" href="/2020/04/23/RoR-搭建web应用/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -148,6 +150,8 @@
 </li>
 <li><p>中国区使用Zappa+Flask</p>
 <p>问题：zappa是serverless python开发的神器，比使用sam来进行开发，其便捷性和效率提高了不少。但zappa目前还没有<a href="https://github.com/Miserlou/Zappa/issues/1977#issue-543761465" target="_blank" rel="external">支持中国区的开发</a>，虽然尝试了其里面<a href="https://github.com/Miserlou/Zappa/issues/1564#issuecomment-457826900" target="_blank" rel="external">issue</a>的一些方法更改core文件，虽然部署成功，但因为中国区的功能上有很多阉割的，所以还是会有一系列问题，更改core文件的代码，看起来不太可靠安全。而且Zappa好像还没有支持中国区的打算，可能此路走不通。</p>
+</li>
+<li><p>未完待续</p>
 </li>
 </ol>
 
