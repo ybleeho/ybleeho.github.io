@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="What is GraphQL?GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why graphql">
+<meta property="og:url" content="https://ybleeho.github.io/public/2020/07/04/Why-graphql/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="What is GraphQL?GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your">
+<meta property="og:updated_time" content="2020-07-04T06:52:18.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Why graphql">
+<meta name="twitter:description" content="What is GraphQL?GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Why graphql</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/06/25/Graceful-shutdown-in-Node/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/07/04/Why-graphql/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&text=Why graphql"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&is_video=false&description=Why graphql"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Why graphql&body=Check out this article: https://ybleeho.github.io/public/2020/07/04/Why-graphql/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&name=Why graphql&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-GraphQL"><span class="toc-number">1.</span> <span class="toc-text">What is GraphQL?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-use-GraphQL"><span class="toc-number">2.</span> <span class="toc-text">Why use GraphQL?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-apollo-Graphql"><span class="toc-number">3.</span> <span class="toc-text">What is apollo Graphql?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Main-process"><span class="toc-number">4.</span> <span class="toc-text">Main process?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use"><span class="toc-number">5.</span> <span class="toc-text">How to use?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">6.</span> <span class="toc-text">Q&A</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Why graphql
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-07-04T06:03:00.000Z" itemprop="datePublished">2020-07-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="What-is-GraphQL"><a href="#What-is-GraphQL" class="headerlink" title="What is GraphQL?"></a>What is GraphQL?</h2><p>GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.</p>
+<h2 id="Why-use-GraphQL"><a href="#Why-use-GraphQL" class="headerlink" title="Why use GraphQL?"></a>Why use GraphQL?</h2><p>I often encounter such a situation …</p>
+<p> “Hey , Hu bro there is xx field missing in your xx api…”</p>
+<p> “Hey, there is too many field in your api, i just need xx and xx field, please modify it…”</p>
+<p>“Hey, i have to request three api in this page, would you please combine those in one API?…”</p>
+<p>“Em…..”</p>
+<p>“Hey, Hu bro  the Api doc has not been updated…What paramater do i need to pass?”</p>
+<p>What i want to say is the above problem solved by GraphQL.</p>
+<h2 id="What-is-apollo-Graphql"><a href="#What-is-apollo-Graphql" class="headerlink" title="What is apollo Graphql?"></a>What is apollo Graphql?</h2><p>GraphQL is just a query language. And in order to use it easily, we need to use a platform that will do all the heavy lifting for us. One such platform is provided by Apollo.</p>
+<h2 id="Main-process"><a href="#Main-process" class="headerlink" title="Main process?"></a>Main process?</h2><p>Describe your data</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Project &#123;</span><br><span class="line">  name: String</span><br><span class="line">  tagline: String</span><br><span class="line">  contributors: [User]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ask for what  u What</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  project(name: &quot;GraphQL&quot;) &#123;</span><br><span class="line">    tagline</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Get predictable results</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;project&quot;: &#123;</span><br><span class="line">    &quot;tagline&quot;: &quot;A query language for APIs&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use?"></a>How to use?</h2><ol>
+<li><p>Build a schema</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const userSchema = gql`</span><br><span class="line">    type Query &#123;</span><br><span class="line">        getUser(id: ID): User</span><br><span class="line">        getUsers: [User]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    type Mutation &#123;</span><br><span class="line">        createUser(userInfo: CreateUserInput): User</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    input CreateUserInput &#123;</span><br><span class="line">        name: String</span><br><span class="line">        age: Int</span><br><span class="line">        address: String</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    type User &#123;</span><br><span class="line">        id: ID</span><br><span class="line">        name: String</span><br><span class="line">        age: Int</span><br><span class="line">        address: String</span><br><span class="line">        number: String</span><br><span class="line">    &#125;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Write query resolvers</p>
+<p>Briefly, <code>Query</code> for get request, <code>Mutation</code> for update request.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const userResolvers = &#123;</span><br><span class="line">    Query: &#123;</span><br><span class="line">        getUser: async (parent, args, context, info) =&gt; await userLoader.getUser(args.id),</span><br><span class="line">        getUsers: async (parent, args, context, info) =&gt; await userLoader.getUsers()</span><br><span class="line">    &#125;,</span><br><span class="line">    Mutation: &#123;</span><br><span class="line">        createUser: async (_, args, &#123; dataSources &#125;) =&gt; &#123;</span><br><span class="line">            return await userLoader.createUser(args.userInfo)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Intergrating with your node middleare</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const apolloServer = new ApolloServer(&#123;</span><br><span class="line">    typeDefs: schema,</span><br><span class="line">    resolvers,</span><br><span class="line">&#125;);</span><br><span class="line">apolloServer.applyMiddleware(&#123; app: app, path: &apos;/graphql&apos; &#125;);</span><br><span class="line">const port = process.env.PORT || 3333</span><br><span class="line">const server = app.listen(port, () =&gt; console.info(`Listening to http://localhost:$&#123;port&#125;/graphql 🚀`));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><a href="[https://github.com/ybleeho/koa_playground](https://github.com/ybleeho/koa_playground">The entire code can be viewed here</a></p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><p><a href="[https://www.apollographql.com/blog/modularizing-your-graphql-schema-code-d7f71d5ed5f2](https://www.apollographql.com/blog/modularizing-your-graphql-schema-code-d7f71d5ed5f2">How to  Modularizing your GraphQL?</a></p>
+<p><a href="[https://www.apollographql.com/docs/apollo-server/data/errors/](https://www.apollographql.com/docs/apollo-server/data/errors/">Error Handling</a></p>
+<p><a href="[https://www.apollographql.com/docs/apollo-server/security/authentication/](https://www.apollographql.com/docs/apollo-server/security/authentication/">Security</a></p>
+<p><a href="[https://www.apollographql.com/docs/apollo-server/testing/testing/](https://www.apollographql.com/docs/apollo-server/testing/testing/">Intergration testing</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-GraphQL"><span class="toc-number">1.</span> <span class="toc-text">What is GraphQL?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-use-GraphQL"><span class="toc-number">2.</span> <span class="toc-text">Why use GraphQL?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-apollo-Graphql"><span class="toc-number">3.</span> <span class="toc-text">What is apollo Graphql?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Main-process"><span class="toc-number">4.</span> <span class="toc-text">Main process?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use"><span class="toc-number">5.</span> <span class="toc-text">How to use?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">6.</span> <span class="toc-text">Q&A</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/07/04/Why-graphql/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&text=Why graphql"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&is_video=false&description=Why graphql"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Why graphql&body=Check out this article: https://ybleeho.github.io/public/2020/07/04/Why-graphql/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&title=Why graphql"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/07/04/Why-graphql/&name=Why graphql&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
