@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/index.html">
 <meta property="og:site_name" content="ybleeho">
 <meta property="og:description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
-<meta property="og:updated_time" content="2020-08-02T13:31:33.601Z">
+<meta property="og:updated_time" content="2020-08-03T23:41:04.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins deploy node project">
 <meta name="twitter:description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
@@ -140,7 +140,7 @@
 <h3 id="Jenkins-config"><a href="#Jenkins-config" class="headerlink" title="Jenkins config"></a>Jenkins config</h3><h4 id="Initialize"><a href="#Initialize" class="headerlink" title="Initialize"></a>Initialize</h4><p>Open <a href="http://host:8080" target="_blank" rel="external">http://host:8080</a> and input initial password, then install recommended plugin.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span> docker exec -it jenkins bash</span><br><span class="line"><span class="meta">$</span> cat /var/jenkins_home/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
 <p>When installing plugins is slow , change the Jenkins-&gt; Manage Jenkins -&gt; Manage plugins -&gt; Advanced -&gt; set Update Site URL as  <a href="http://mirror.esuni.jp/jenkins/updates/update-center.json" target="_blank" rel="external">http://mirror.esuni.jp/jenkins/updates/update-center.json</a></p>
-<h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p>Config ssh key, in order to let jenkis pull code from git</p>
+<h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p>Config ssh key, in order to let jenkis pull code from git if needed.</p>
 <h4 id="Create-jenkins-item"><a href="#Create-jenkins-item" class="headerlink" title="Create jenkins item"></a>Create jenkins item</h4><ol>
 <li><p>Create a freestyle project</p>
 </li>
