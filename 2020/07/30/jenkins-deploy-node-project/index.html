@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/index.html">
 <meta property="og:site_name" content="ybleeho">
 <meta property="og:description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
-<meta property="og:updated_time" content="2020-08-03T23:41:04.367Z">
+<meta property="og:updated_time" content="2020-08-09T04:52:56.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins deploy node project">
 <meta name="twitter:description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
@@ -149,7 +149,7 @@
 <li><p>Source Code Management -&gt; Select Git and put the project url</p>
 </li>
 <li><p>Build -&gt; Add build step -&gt; Esecute shell</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build --tag playground:$BUILD_NUMBER .</span><br><span class="line">docker stop playground &amp;&amp; docker rm playground</span><br><span class="line">docker run --name playground playground:$BUILD_NUMBER</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build --tag playground:$BUILD_NUMBER .</span><br><span class="line">docker stop playground &amp;&amp; docker rm playground</span><br><span class="line">docker run -p 3000:3000 --name playground playground:$BUILD_NUMBER</span><br></pre></td></tr></table></figure>
 <ol start="5">
 <li>Save and build the item</li>
 </ol>
