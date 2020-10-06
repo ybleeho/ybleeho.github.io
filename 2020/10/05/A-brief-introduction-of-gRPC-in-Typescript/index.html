@@ -13,13 +13,13 @@
 <meta property="og:url" content="https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/index.html">
 <meta property="og:site_name" content="ybleeho">
 <meta property="og:description" content="Introduction to gRPCIn gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed">
-<meta property="og:image" content="https://ybleeho.github.io/Users/hu/WebstormProjects/ybleeho.github.io/source/images/gPRC.svg">
+<meta property="og:image" content="https://ybleeho.github.io/images/gPRC.svg">
 <meta property="og:image" content="https://ybleeho.github.io/images/gPRC-test-result.png">
-<meta property="og:updated_time" content="2020-10-06T00:54:42.636Z">
+<meta property="og:updated_time" content="2020-10-06T01:00:21.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A brief introduction of gRPC in Typescript">
 <meta name="twitter:description" content="Introduction to gRPCIn gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed">
-<meta name="twitter:image" content="https://ybleeho.github.io/Users/hu/WebstormProjects/ybleeho.github.io/source/images/gPRC.svg">
+<meta name="twitter:image" content="https://ybleeho.github.io/images/gPRC.svg">
     
     
         
@@ -139,7 +139,7 @@
 
   <div class="content" itemprop="articleBody">
     <h3 id="Introduction-to-gRPC"><a href="#Introduction-to-gRPC" class="headerlink" title="Introduction to gRPC"></a>Introduction to gRPC</h3><p>In gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed applications and services. As in many RPC systems, gRPC is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a gRPC server to handle client calls. On the client side, the client has a stub (referred to as just a client in some languages) that provides the same methods as the server.</p>
-<p><img src="/Users/hu/WebstormProjects/ybleeho.github.io/source/images/gPRC.svg" style="zoom:67%;"></p>
+<p><img src="/images/gPRC.svg" style="zoom:67%;"></p>
 <p>By default, gRPC uses HTTP2 for transporting data streams between remote computers. Protocal buffers developed by Google are used for processing the data. Protocol buffers are saved as simple text files with the extension <code>.proto</code>.</p>
 <p>gRPC lets you define four kinds of service method:</p>
 <ul>
