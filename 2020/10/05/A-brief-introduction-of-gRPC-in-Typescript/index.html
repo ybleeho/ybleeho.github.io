@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Introduction to gRPCIn gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A brief introduction of gRPC in Typescript">
+<meta property="og:url" content="https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="Introduction to gRPCIn gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed">
+<meta property="og:image" content="https://ybleeho.github.io/images/gPRC.svg">
+<meta property="og:image" content="https://ybleeho.github.io/images/gPRC-test-result.png">
+<meta property="og:updated_time" content="2020-10-06T01:00:21.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A brief introduction of gRPC in Typescript">
+<meta name="twitter:description" content="Introduction to gRPCIn gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed">
+<meta name="twitter:image" content="https://ybleeho.github.io/images/gPRC.svg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>A brief introduction of gRPC in Typescript</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/08/09/Useful-vi-commands/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/10/06/Simple-summary-of-git-and-github-useful-tools/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&text=A brief introduction of gRPC in Typescript"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&is_video=false&description=A brief introduction of gRPC in Typescript"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A brief introduction of gRPC in Typescript&body=Check out this article: https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&name=A brief introduction of gRPC in Typescript&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-gRPC"><span class="toc-number">1.</span> <span class="toc-text">Introduction to gRPC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-with-Typescript"><span class="toc-number">2.</span> <span class="toc-text">Use with Typescript</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Init"><span class="toc-number">2.1.</span> <span class="toc-text">Init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Create-proto-file"><span class="toc-number">2.2.</span> <span class="toc-text">Create proto file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Generate-code-from-the-proto-file"><span class="toc-number">2.3.</span> <span class="toc-text">Generate code from the proto file</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        A brief introduction of gRPC in Typescript
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-10-05T02:17:41.000Z" itemprop="datePublished">2020-10-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="Introduction-to-gRPC"><a href="#Introduction-to-gRPC" class="headerlink" title="Introduction to gRPC"></a>Introduction to gRPC</h3><p>In gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed applications and services. As in many RPC systems, gRPC is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. On the server side, the server implements this interface and runs a gRPC server to handle client calls. On the client side, the client has a stub (referred to as just a client in some languages) that provides the same methods as the server.</p>
+<p><img src="/images/gPRC.svg" style="zoom:67%;"></p>
+<p>By default, gRPC uses HTTP2 for transporting data streams between remote computers. Protocal buffers developed by Google are used for processing the data. Protocol buffers are saved as simple text files with the extension <code>.proto</code>.</p>
+<p>gRPC lets you define four kinds of service method:</p>
+<ul>
+<li><p>Unary RPCs where the client sends a single request to the server and gets a single response back, just like a normal function call.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpc SayHello(HelloRequest) returns (HelloResponse);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Server streaming RPCs where the client sends a request to the server and gets a stream to read a sequence of messages back. The client reads from the returned stream until there are no more messages. gRPC guarantees message ordering within an individual RPC call.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Client streaming RPCs where the client writes a sequence of messages and sends them to the server, again using a provided stream. Once the client has finished writing the messages, it waits for the server to read them and return its response. Again gRPC guarantees message ordering within an individual RPC call.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Bidirectional streaming RPCs where both sides send a sequence of messages using a read-write stream. The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Use-with-Typescript"><a href="#Use-with-Typescript" class="headerlink" title="Use with Typescript"></a>Use with Typescript</h3><h4 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn init</span><br><span class="line">yarn add grpc grpc-tools grpc_tools_node_protoc_ts ts-node-dev typescript</span><br><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
+<h4 id="Create-proto-file"><a href="#Create-proto-file" class="headerlink" title="Create proto file"></a>Create proto file</h4><p>create user.proto file </p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line">syntax = <span class="string">"proto3"</span>;</span><br><span class="line"><span class="keyword">package</span> userservice;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">message</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> name = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">int32</span> age = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">string</span> email = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">message</span> <span class="title">GetUserByAgeRequest</span> </span>&#123;</span><br><span class="line">    <span class="built_in">int32</span> age = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">message</span> <span class="title">GetUserByAgeResponse</span> </span>&#123;</span><br><span class="line">    <span class="keyword">repeated</span> User users = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">service</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetUserByAge(GetUserByAgeRequest) <span class="keyword">returns</span> (GetUserByAgeResponse) &#123;&#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Generate-code-from-the-proto-file"><a href="#Generate-code-from-the-proto-file" class="headerlink" title="Generate code from the proto file"></a>Generate code from the proto file</h4><p>Create gen.sh file</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx grpc_tools_node_protoc \</span><br><span class="line">--js_out=import_style=commonjs,binary:./ \</span><br><span class="line">--grpc_out=./ \</span><br><span class="line">--ts_out=./ \</span><br><span class="line">user.proto</span><br></pre></td></tr></table></figure>
+<p>Make sure this file is executable </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x gen.sh</span><br><span class="line">./gen.sh</span><br></pre></td></tr></table></figure>
+<p>The script will generate two file for js and two file for ts.The grpc one define our service and the other one contain our object.</p>
+<p>Create server.ts file and create our gRPC server</p>
+ <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> grpc <span class="keyword">from</span> <span class="string">'grpc'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IUserServiceServer, UserServiceService &#125; <span class="keyword">from</span> <span class="string">'./user_grpc_pb'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User, GetUserByAgeResponse, GetUserByAgeRequest &#125; <span class="keyword">from</span> <span class="string">'./user_pb'</span>;</span><br><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> grpc.Server();</span><br><span class="line">server.addService&lt;IUserServiceServer&gt;(UserServiceService, <span class="keyword">new</span> UserService());</span><br><span class="line">server.bind(<span class="string">'0.0.0.0:3302'</span>, grpc.ServerCredentials.createInsecure());</span><br><span class="line">server.start()</span><br></pre></td></tr></table></figure>
+<p>Then write the UserService class implements IUserServiceServer</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> grpc <span class="keyword">from</span> <span class="string">'grpc'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IUserServiceServer, UserServiceService &#125; <span class="keyword">from</span> <span class="string">'./user_grpc_pb'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User, GetUserByAgeResponse, GetUserByAgeRequest &#125; <span class="keyword">from</span> <span class="string">'./user_pb'</span>;</span><br><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> grpc.Server();</span><br><span class="line"><span class="keyword">const</span> allUsers: User.AsObject[] = [</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'leeho'</span>,</span><br><span class="line">        age: <span class="number">15</span>,</span><br><span class="line">        email: <span class="string">'ybleeho@gmail.com'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'leeho'</span>,</span><br><span class="line">        age: <span class="number">20</span>,</span><br><span class="line">        email: <span class="string">'ybleeho2@gmail.com'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'leeho'</span>,</span><br><span class="line">        age: <span class="number">30</span>,</span><br><span class="line">        email: <span class="string">'ybleeho3@gmail.com'</span></span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> UserService <span class="keyword">implements</span> IUserServiceServer &#123;</span><br><span class="line">    <span class="keyword">public</span> getUserByAge(</span><br><span class="line">        call: grpc.ServerUnaryCall&lt;GetUserByAgeRequest&gt;,</span><br><span class="line">        callback: grpc.sendUnaryData&lt;GetUserByAgeResponse&gt;</span><br><span class="line">    ): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;request&#125; = call;</span><br><span class="line">        <span class="keyword">const</span> age = request.getAge();</span><br><span class="line">        <span class="keyword">const</span> users = allUsers.filter(<span class="function"><span class="params">user</span> =&gt;</span> user.age &gt;= age);</span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">new</span> GetUserByAgeResponse();</span><br><span class="line">        <span class="keyword">const</span> result: User[] = [];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> user of users) &#123;</span><br><span class="line">            <span class="keyword">const</span> userGrpc: User = <span class="keyword">new</span> User();</span><br><span class="line">            userGrpc.setName(user.name);</span><br><span class="line">            userGrpc.setAge(user.age);</span><br><span class="line">            userGrpc.setEmail(user.email);</span><br><span class="line">            result.push(userGrpc);</span><br><span class="line">        &#125;</span><br><span class="line">        response.setUsersList(result);</span><br><span class="line">        callback(<span class="literal">null</span>, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server.addService&lt;IUserServiceServer&gt;(UserServiceService, <span class="keyword">new</span> UserService());</span><br><span class="line">server.bind(<span class="string">'0.0.0.0:3302'</span>, grpc.ServerCredentials.createInsecure());</span><br><span class="line">server.start()</span><br></pre></td></tr></table></figure>
+<p>Last edit the <code>package.json</code> as below:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"grpc"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"ts-node-dev ./server.ts"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"grpc"</span>: <span class="string">"^1.24.3"</span>,</span><br><span class="line">    <span class="attr">"grpc-tools"</span>: <span class="string">"^1.9.1"</span>,</span><br><span class="line">    <span class="attr">"grpc_tools_node_protoc_ts"</span>: <span class="string">"^4.1.5"</span>,</span><br><span class="line">    <span class="attr">"ts-node-dev"</span>: <span class="string">"^1.0.0-pre.63"</span>,</span><br><span class="line">    <span class="attr">"typescript"</span>: <span class="string">"^4.0.3"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Than start the server with <code>yarn start</code> command.</p>
+<p>We can test the gRPC server with <a href="https://github.com/uw-labs/bloomrpc" target="_blank" rel="external">BloomRPC</a>.</p>
+<p>You can see the results as blow.</p>
+<p><img src="/images/gPRC-test-result.png" alt="gPRC-test-result"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-gRPC"><span class="toc-number">1.</span> <span class="toc-text">Introduction to gRPC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-with-Typescript"><span class="toc-number">2.</span> <span class="toc-text">Use with Typescript</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Init"><span class="toc-number">2.1.</span> <span class="toc-text">Init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Create-proto-file"><span class="toc-number">2.2.</span> <span class="toc-text">Create proto file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Generate-code-from-the-proto-file"><span class="toc-number">2.3.</span> <span class="toc-text">Generate code from the proto file</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&text=A brief introduction of gRPC in Typescript"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&is_video=false&description=A brief introduction of gRPC in Typescript"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A brief introduction of gRPC in Typescript&body=Check out this article: https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&title=A brief introduction of gRPC in Typescript"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/10/05/A-brief-introduction-of-gRPC-in-Typescript/&name=A brief introduction of gRPC in Typescript&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
