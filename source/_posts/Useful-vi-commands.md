@@ -1,7 +1,7 @@
 ---
 title: Useful vi commands
 date: 2020-08-09 17:18:03
-tags
+tags:
 ---
 
 Only record some commonly used commands 
