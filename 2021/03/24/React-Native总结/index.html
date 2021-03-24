@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="经过两三个月，随着Android端和iOS端的ReactNative项目上线，想把第一次从0到上线的React Native经验总结一下。选用React Native的原因是因为对JS和React熟悉， 加之项目需要双端快速上线，又只有我一个人可以投入这个项目开发，Native需要时间去熟悉， 所以RN成了第一选择。看别人的总结总把React Native说成一个坑，但遇到问题后， 大部分问题都可">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ybleeho">
+<meta property="og:url" content="https://ybleeho.github.io/public/2021/03/24/React-Native总结/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="经过两三个月，随着Android端和iOS端的ReactNative项目上线，想把第一次从0到上线的React Native经验总结一下。选用React Native的原因是因为对JS和React熟悉， 加之项目需要双端快速上线，又只有我一个人可以投入这个项目开发，Native需要时间去熟悉， 所以RN成了第一选择。看别人的总结总把React Native说成一个坑，但遇到问题后， 大部分问题都可">
+<meta property="og:updated_time" content="2021-03-24T10:20:42.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ybleeho">
+<meta name="twitter:description" content="经过两三个月，随着Android端和iOS端的ReactNative项目上线，想把第一次从0到上线的React Native经验总结一下。选用React Native的原因是因为对JS和React熟悉， 加之项目需要双端快速上线，又只有我一个人可以投入这个项目开发，Native需要时间去熟悉， 所以RN成了第一选择。看别人的总结总把React Native说成一个坑，但遇到问题后， 大部分问题都可">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ybleeho</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/20/Setup-Charles-proxy-for-mobile-app/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2021/03/24/React-Native总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://ybleeho.github.io/public/2021/03/24/React-Native总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#页面结构"><span class="toc-number">2.</span> <span class="toc-text">页面结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#样式"><span class="toc-number">3.</span> <span class="toc-text">样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Splash-Screen"><span class="toc-number">4.</span> <span class="toc-text">关于Splash Screen</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于ImagePicker和拍摄"><span class="toc-number">5.</span> <span class="toc-text">关于ImagePicker和拍摄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于iOS设备登录和内购"><span class="toc-number">6.</span> <span class="toc-text">关于iOS设备登录和内购</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于原生交互"><span class="toc-number">7.</span> <span class="toc-text">关于原生交互</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于WebView"><span class="toc-number">8.</span> <span class="toc-text">关于WebView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Flatlist"><span class="toc-number">9.</span> <span class="toc-text">关于Flatlist</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-24T08:29:49.000Z" itemprop="datePublished">2021-03-24</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>经过两三个月，随着Android端和iOS端的ReactNative项目上线，想把第一次从0到上线的React Native经验总结一下。选用React Native的原因是因为对JS和React熟悉， 加之项目需要双端快速上线，又只有我一个人可以投入这个项目开发，Native需要时间去熟悉， 所以RN成了第一选择。看别人的总结总把React Native说成一个坑，但遇到问题后， 大部分问题都可以解决实现。如果React Native解决不了的问题也可以通过跟Native做桥接完美实现功能。特别是像国内的一些SDK的RN版本少或者很多年没有维护（如IM等等），需要写原生再去用RN去调用原声代码。</p>
+<h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><p>刚开始摸索阶段可能是花时间最多的阶段， 最后决定项目由React Native Cli + React Navigation + React Hook来完成。不用Expo的原因是因为后面很难用Native模块去扩展，如果是一些简单的项目可以用Expo去实现。在Navigation里面有React Navigation和React Native Navigation，看了文档以后感觉React Navigation更简洁并且Star数也比较高，所以选择了React Navigation。 在代码风格方面使用React Hook， Hook提供的useContext ，可以完美的代替redux，写法又简洁又大部分的RN文档又是Hook的方式， 所以选择React Hook。</p>
+<p>代码结构大概是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── App.js</span><br><span class="line">├── README.md</span><br><span class="line">├── __tests__</span><br><span class="line">├── android</span><br><span class="line">├── app.json</span><br><span class="line">├── babel.config.js</span><br><span class="line">├── index.js</span><br><span class="line">├── ios</span><br><span class="line">├── metro.config.js</span><br><span class="line">├── node_modules</span><br><span class="line">├── package.json</span><br><span class="line">├── src</span><br><span class="line">├── yarn-error.log</span><br><span class="line">└── yarn.lock</span><br><span class="line">//src</span><br><span class="line">.</span><br><span class="line">├── assets</span><br><span class="line">├── components</span><br><span class="line">├── constants</span><br><span class="line">├── context</span><br><span class="line">├── hooks</span><br><span class="line">├── lib</span><br><span class="line">├── navigations</span><br><span class="line">├── request</span><br><span class="line">├── screens</span><br><span class="line">├── style</span><br><span class="line">└── utils</span><br></pre></td></tr></table></figure>
+<p>最外层几乎是默认的init结构， src目录下assert文件存储图片，icon，动效等等文件。 只需要放iOS的2x和3x的图片。components主要放一些组件，constansts常量如屏幕宽度，高度， 等等，context存储比如AuthContext， LoadingContext 等等全局的一些context。lib存储了一些第三方的library的一些扩展或者重写。navigations主要放了BottomTabNav， AuthNav， AppNav等等路由。request存放请求相关。screens存放每个页面。</p>
+<h4 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">└── RootNavigator</span><br><span class="line">    ├── AppStackNavigator</span><br><span class="line">    │   ├── BottomTabNavigator</span><br><span class="line">    │   │   ├── Tab1</span><br><span class="line">    │   │   ├── Tab2</span><br><span class="line">    │   │   ├── Tab3</span><br><span class="line">    │   │   └── Tab4</span><br><span class="line">    │   ├── Detail1Screen</span><br><span class="line">    │   └── Detail2Screen</span><br><span class="line">    └── AuthStacNavigator</span><br></pre></td></tr></table></figure>
+<p>路由结构还是比较清晰，AppStackNav和AuthStackNav用token去控制进入哪个Nav， 主要注意的是Bottom Tab和 Detai的顺序， Bottom Tab和 DetailScreen需要平级， 才能Push的时候Detail页面盖住Bottom Tab。还有一个问题是TopTabNav。 在这边我是实用react-native-tab-view 来代替 TopTabNav。 如果需要Bottom Tab的动效，可以参考<a href="https://blog.csdn.net/hejun041/article/details/101026140" target="_blank" rel="external">https://blog.csdn.net/hejun041/article/details/101026140</a> 。有一个问题是pop时候如何传给上一个页面数据， 这个问题解决办法是navigate到下一个组件的时候传入一个函数getBackData然后在pop时候调用这个函数。RN会抛出警告ignore掉就好。方法是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LogBox.ignoreLogs([</span><br><span class="line">    &apos;Non-serializable values were found in the navigation state&apos;,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p>关于StackNavigator的配置, 我的配置是如下图所示， Slide需要统一成iOS方式。然后每个页面的title或者shadow。注意的是gestureEnabled在iOS是true，需要都设置成true。headerBackTitleVisible 设置成false</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;AppStack.Navigator</span><br><span class="line">           mode=&quot;card&quot;</span><br><span class="line">           initialRouteName=&#123;&apos;App&apos;&#125;</span><br><span class="line">           screenOptions=&#123;&#123;</span><br><span class="line">               headerBackTitleVisible: false,</span><br><span class="line">               ...TransitionPresets.SlideFromRightIOS</span><br><span class="line">           &#125;&#125;</span><br><span class="line">       &gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        title,</span><br><span class="line">        headerTitleStyle: &#123; fontSize: 18 &#125;,</span><br><span class="line">        headerTitleAlign: &apos;center&apos;,</span><br><span class="line">        headerBackImage: () =&gt; &lt;HeaderLeft /&gt;,</span><br><span class="line">        headerBackTitleVisible: false,</span><br><span class="line">        gestureEnabled: true,  // Defaults to true on iOS, false on Android.</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h4><p>React Native主要使用flex布局， 问题不大， 字体大小，宽度等等没有单位采用的是dp， 默认字体不是PingFang SC 需要全局设置。下面是我全局使用的一些样式。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">TextInput.defaultProps.selectionColor = &apos;#FF7756&apos;</span><br><span class="line">TextInput.defaultProps.placeholderTextColor = &apos;rgba(0, 0, 0, 0.24)&apos;</span><br><span class="line">//https://stackoverflow.com/questions/35255645/how-to-set-default-font-family-in-react-native</span><br><span class="line">let oldRender = Text.render;</span><br><span class="line">Text.render = function (...args) &#123;</span><br><span class="line">    let origin = oldRender.call(this, ...args);</span><br><span class="line">    return React.cloneElement(origin, &#123;</span><br><span class="line">        style: [&#123; fontFamily: &apos;PingFang SC&apos;, letterSpacing: 0.3 &#125;, origin.props.style]</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>关于SafeArea我是用的是react-native-safe-area-context， 它提供上下左右的安全区域， 需要注意的是React Navigation 已经加上了SafeArea所以不用考虑。</p>
+<p>关于StatusBar</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (isAndroid) &#123;</span><br><span class="line">    StatusBar.setTranslucent(true);</span><br><span class="line">    StatusBar.setBackgroundColor(&apos;transparent&apos;);</span><br><span class="line">    StatusBar.setBarStyle(&apos;dark-content&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于fontWeight</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;normal&apos; | &apos;bold&apos; | &apos;100&apos; | &apos;200&apos; | &apos;300&apos; | &apos;400&apos; | &apos;500&apos; | &apos;600&apos; | &apos;700&apos; | &apos;800&apos; | &apos;900&apos;</span><br></pre></td></tr></table></figure>
+<p>iOS和android的fontWeight表现不一样， 在android的500，600 不太明显 ， iOS600跟android的700差不多。</p>
+<p>关于shadow</p>
+<p>iOS和android的样式也是不一样的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//ios</span><br><span class="line">        shadowColor: &apos;#000000&apos;,</span><br><span class="line">        shadowOpacity: 0.1,</span><br><span class="line">        shadowRadius: 3,</span><br><span class="line">        shadowOffset: &#123;</span><br><span class="line">            height: 0,</span><br><span class="line">            width: -2,</span><br><span class="line">        &#125;,</span><br><span class="line">        //android</span><br><span class="line">        elevation: 1,</span><br></pre></td></tr></table></figure>
+<p>android的阴影很难跟iOS一样去统一， 点9图又很麻烦， 其它方式又很卡， 所以凑合用吧。</p>
+<p>关于Button</p>
+<p>推荐使用TouchableOpacity自行去实现。 渐变色用react-native-linear-gradient</p>
+<p>关于图片</p>
+<p>如果需要按比例显示， Image的contain会剧中图片使用react-native-scalable-image 来实现居左或靠上的图片</p>
+<p>还有iOS 14以下Image的webp图片显示会有问题， 可能需要转换格式。</p>
+<p>关于键盘</p>
+<p>是个头疼问题， 采用的是KeyboardAvoidingView。需要注意的是要考虑Nav的 header高度。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;KeyboardAvoidingView style=&#123;&#123; flex: 1, width: SCREEN_WIDTH &#125;&#125; behavior=&#123;Platform.OS === &quot;ios&quot; ? &quot;padding&quot; : &quot;null&quot;&#125; keyboardVerticalOffset=&#123;Platform.select(&#123; ios: useHeaderHeight() &#125;)&#125; &gt;</span><br></pre></td></tr></table></figure>
+<h4 id="关于Splash-Screen"><a href="#关于Splash-Screen" class="headerlink" title="关于Splash Screen"></a>关于Splash Screen</h4><p>使用react-native-splash-screen 或者需要动效的话使用react-native-lottie-splash-screen （注意iOS项目配置Swift转OC）</p>
+<h4 id="关于ImagePicker和拍摄"><a href="#关于ImagePicker和拍摄" class="headerlink" title="关于ImagePicker和拍摄"></a>关于ImagePicker和拍摄</h4><p>因为没有找到合适的Picker跟项目的流程一样，所以用@react-native-community/cameraroll 和Flatlist自己写了一个ImagePicker以及上面添加一个Preview的页面， 不算很复杂。短按拍摄，长按拍段视频也可以用onPress和onLongPress实现。拍摄进度使用的是 react-native-circular-progress。</p>
+<h4 id="关于iOS设备登录和内购"><a href="#关于iOS设备登录和内购" class="headerlink" title="关于iOS设备登录和内购"></a>关于iOS设备登录和内购</h4><p>不太复杂， 使用的是 @invertase/react-native-apple-authentication和 react-native-iap, 唯一注意的地方是内购需要防止丢单，需要App监听回调， 跟后端交互以后需要ACK一下。</p>
+<h4 id="关于原生交互"><a href="#关于原生交互" class="headerlink" title="关于原生交互"></a>关于原生交互</h4><p>一些SDK可能没有提供RN版本的封装， 这时候可能需要写Native代码然后实现桥接。例如使用的腾讯IM， 阿里人脸认证等等， 都使用原生去封装了一下。 原声代码不是很难， 基本上Copy就可以， 关于桥接 RN提供了回调， Promise 还有Emiter等等方式， 封装方式也比较简单， 很容易去实现，官网有具体实现方法。</p>
+<h4 id="关于WebView"><a href="#关于WebView" class="headerlink" title="关于WebView"></a>关于WebView</h4><p>RN在跟Webview交互的时候可能需要向Webview发送数据或者拿到数据这时候， react-native-webview也提供了这个方法 。<code>injectedJavaScriptBeforeContentLoaded</code> 这个方法会在webview load之前执行， 但是发现有些版本较低或者部分手机无法执行这个方法。 <code>injectedJavaScript</code>这个方法是都会执行， 但是有些时候还没有执行完webview的init js代码就执行了， 最后没办法 只能使用<code>injectedJavaScript</code> 然后Webview延迟大概500ms-1s去执行， 拿到App的数据。 然后如果Webview向App发送事件使用 <code>onMessage</code>就可以， 比如在Webview里面按返回执行的逻辑可以在<code>onMessage</code>拿到事件以及数据在执行。</p>
+<h4 id="关于Flatlist"><a href="#关于Flatlist" class="headerlink" title="关于Flatlist"></a>关于Flatlist</h4><p>这部分可能是比较麻烦， 而且优化内容比较多的一个地方。 Flatlist提供了下拉刷新， 以及加载更多的功能， 以及renderHeader 等等方法 。 对于item可能需要<code>React.memo</code>等等方法在state变化时，防止重新渲染， 提高性能（优化放在必要时候）。还有<code>initialNumToRender</code>如果不去设置这个值每次会render10个数据， 所以当一个屏幕高度内有10+个数据时候会出现先render10个的现象，这时候可以把这个值设置高一些或者设置成数据长度。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>经过这段时间的摸索， 感觉React Native还是值得去尝试的， 虽然可能有一些琐碎的问题， 所谓的坑， 但问题都不大，并且也可以跟原生交互。 像对于移动端开发不是很熟悉，但对Javascript， React熟悉的朋友们都值得去尝试， App的体验跟Native相差无几， 可能在项目初期会花的时间比较多，但对于后期的维护来说实在是太方便， 一次改两个平台，太香！！！</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#页面结构"><span class="toc-number">2.</span> <span class="toc-text">页面结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#样式"><span class="toc-number">3.</span> <span class="toc-text">样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Splash-Screen"><span class="toc-number">4.</span> <span class="toc-text">关于Splash Screen</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于ImagePicker和拍摄"><span class="toc-number">5.</span> <span class="toc-text">关于ImagePicker和拍摄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于iOS设备登录和内购"><span class="toc-number">6.</span> <span class="toc-text">关于iOS设备登录和内购</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于原生交互"><span class="toc-number">7.</span> <span class="toc-text">关于原生交互</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于WebView"><span class="toc-number">8.</span> <span class="toc-text">关于WebView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Flatlist"><span class="toc-number">9.</span> <span class="toc-text">关于Flatlist</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2021/03/24/React-Native总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://ybleeho.github.io/public/2021/03/24/React-Native总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2021/03/24/React-Native总结/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>
