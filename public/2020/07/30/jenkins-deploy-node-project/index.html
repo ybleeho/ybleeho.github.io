@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jenkins deploy node project">
+<meta property="og:url" content="https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
+<meta property="og:updated_time" content="2020-08-09T04:52:56.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jenkins deploy node project">
+<meta name="twitter:description" content="Install jenkinsdocker pull jenkins/jenkins Start jenkins container# create /home/jenkins_home file and chage mode$ mkdir /var/jenkins_home$ sudo chmod 777 /var/jenkins_home# start jenkins container$ d">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>jenkins deploy node project</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/07/04/Why-graphql/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/08/09/Useful-vi-commands/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&text=jenkins deploy node project"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&is_video=false&description=jenkins deploy node project"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jenkins deploy node project&body=Check out this article: https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&name=jenkins deploy node project&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-jenkins"><span class="toc-number">1.</span> <span class="toc-text">Install jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Start-jenkins-container"><span class="toc-number">2.</span> <span class="toc-text">Start jenkins container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jenkins-config"><span class="toc-number">3.</span> <span class="toc-text">Jenkins config</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Initialize"><span class="toc-number">3.1.</span> <span class="toc-text">Initialize</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH"><span class="toc-number">3.2.</span> <span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Create-jenkins-item"><span class="toc-number">3.3.</span> <span class="toc-text">Create jenkins item</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        jenkins deploy node project
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-07-30T15:11:41.000Z" itemprop="datePublished">2020-07-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="Install-jenkins"><a href="#Install-jenkins" class="headerlink" title="Install jenkins"></a>Install jenkins</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull jenkins/jenkins</span><br></pre></td></tr></table></figure>
+<h3 id="Start-jenkins-container"><a href="#Start-jenkins-container" class="headerlink" title="Start jenkins container"></a>Start jenkins container</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> create /home/jenkins_home file and chage mode</span><br><span class="line"><span class="meta">$</span> mkdir /var/jenkins_home</span><br><span class="line"><span class="meta">$</span> sudo chmod 777 /var/jenkins_home</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> start jenkins container</span><br><span class="line"><span class="meta">$</span> docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -v /etc/localtime:/etc/localtime --name jenkins docker.io/jenkins/jenkins</span><br><span class="line"></span><br><span class="line">-d                                后台运行镜像</span><br><span class="line">-p 8080:8080                      将镜像的8080端口映射到服务器的8080端口(服务器端口：镜像端口)</span><br><span class="line">-p 50000:50000                    基于 JNLP 的 Jenkins 代理通过 TCP 端口 50000 与 Jenkins master 进行通信,所以也要映射</span><br><span class="line">-v /var/jenkins_home:/var/jenkins_home                /var/jenkins_home目录为jenkins工作目录，我们将硬盘上的一个目录挂载到这个位置，方便后续更新镜像后继续使用原来的工作目录。</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock          jenkins容器内也需要docker来执行任务，所以这里将docker命令也映射到容器里</span><br><span class="line">-v /usr/bin/docker:/usr/bin/docker                    将docker命令映射到容器内</span><br><span class="line">-v /etc/localtime:/etc/localtime  让容器使用和服务器同样的时间设置。</span><br><span class="line">--name myjenkins                  给容器起一个别名</span><br><span class="line">docker.io/jenkins/jenkins         使用刚下载的镜像安装</span><br><span class="line"><span class="meta">#</span> reference</span><br><span class="line"><span class="meta">#</span> https://juejin.im/post/6844904035326099470</span><br><span class="line"><span class="meta">#</span> https://www.jenkins.io/doc/book/installing/</span><br></pre></td></tr></table></figure>
+<h3 id="Jenkins-config"><a href="#Jenkins-config" class="headerlink" title="Jenkins config"></a>Jenkins config</h3><h4 id="Initialize"><a href="#Initialize" class="headerlink" title="Initialize"></a>Initialize</h4><p>Open <a href="http://host:8080" target="_blank" rel="external">http://host:8080</a> and input initial password, then install recommended plugin.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span> docker exec -it jenkins bash</span><br><span class="line"><span class="meta">$</span> cat /var/jenkins_home/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
+<p>When installing plugins is slow , change the Jenkins-&gt; Manage Jenkins -&gt; Manage plugins -&gt; Advanced -&gt; set Update Site URL as  <a href="http://mirror.esuni.jp/jenkins/updates/update-center.json" target="_blank" rel="external">http://mirror.esuni.jp/jenkins/updates/update-center.json</a></p>
+<h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p>Config ssh key, in order to let jenkis pull code from git if needed.</p>
+<h4 id="Create-jenkins-item"><a href="#Create-jenkins-item" class="headerlink" title="Create jenkins item"></a>Create jenkins item</h4><ol>
+<li><p>Create a freestyle project</p>
+</li>
+<li><p>General -&gt; Select GitHub project and put the project url</p>
+</li>
+<li><p>Source Code Management -&gt; Select Git and put the project url</p>
+</li>
+<li><p>Build -&gt; Add build step -&gt; Esecute shell</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build --tag playground:$BUILD_NUMBER .</span><br><span class="line">docker stop playground &amp;&amp; docker rm playground</span><br><span class="line">docker run -p 3000:3000 --name playground playground:$BUILD_NUMBER</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>Save and build the item</li>
+</ol>
+</li>
+</ol>
+<p>注意：不要使用默认源安装docker， 不要使用默认源安装docker， 不要使用默认源安装docker， 不然会遇到下面的error</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jenkins /usr/bin/docker: 2: .: Can&apos;t open /etc/sysconfig/docker</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">You don&apos;t have either docker-client or docker-client-latest installed. Please install either one and retry</span><br></pre></td></tr></table></figure>
+<p> if this <code>Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post</code> error occurs , run <code>chmod 777 /var/run/docker.sock</code></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-jenkins"><span class="toc-number">1.</span> <span class="toc-text">Install jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Start-jenkins-container"><span class="toc-number">2.</span> <span class="toc-text">Start jenkins container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jenkins-config"><span class="toc-number">3.</span> <span class="toc-text">Jenkins config</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Initialize"><span class="toc-number">3.1.</span> <span class="toc-text">Initialize</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH"><span class="toc-number">3.2.</span> <span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Create-jenkins-item"><span class="toc-number">3.3.</span> <span class="toc-text">Create jenkins item</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&text=jenkins deploy node project"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&is_video=false&description=jenkins deploy node project"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jenkins deploy node project&body=Check out this article: https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&title=jenkins deploy node project"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/07/30/jenkins-deploy-node-project/&name=jenkins deploy node project&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
