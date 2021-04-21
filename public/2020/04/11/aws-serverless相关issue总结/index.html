@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="关于sam local start-api很慢的问题 解决办法：不用每次pull image， 可以 skip pull image sam local start-api --skip-pull-image。 诶， 但mounting还是很慢，有没有keep docker container warm)的方法，看起来目前issue还是open状态，sam还不支持 keep warm。  关于s">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aws中国区serverless相关issue总结">
+<meta property="og:url" content="https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/index.html">
+<meta property="og:site_name" content="ybleeho">
+<meta property="og:description" content="关于sam local start-api很慢的问题 解决办法：不用每次pull image， 可以 skip pull image sam local start-api --skip-pull-image。 诶， 但mounting还是很慢，有没有keep docker container warm)的方法，看起来目前issue还是open状态，sam还不支持 keep warm。  关于s">
+<meta property="og:updated_time" content="2020-04-11T03:39:05.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="aws中国区serverless相关issue总结">
+<meta name="twitter:description" content="关于sam local start-api很慢的问题 解决办法：不用每次pull image， 可以 skip pull image sam local start-api --skip-pull-image。 诶， 但mounting还是很慢，有没有keep docker container warm)的方法，看起来目前issue还是open状态，sam还不支持 keep warm。  关于s">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>aws中国区serverless相关issue总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/12/22/Express-Application-using-Typescript/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/04/23/RoR-搭建web应用/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&text=aws中国区serverless相关issue总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&is_video=false&description=aws中国区serverless相关issue总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=aws中国区serverless相关issue总结&body=Check out this article: https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&name=aws中国区serverless相关issue总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        aws中国区serverless相关issue总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ybleeho</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-11T00:46:29.000Z" itemprop="datePublished">2020-04-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ol>
+<li><p>关于<code>sam local start-api</code>很慢的问题</p>
+<p>解决办法：不用每次pull image， 可以 <a href="https://github.com/awslabs/aws-sam-cli/issues/134#issuecomment-390231341" target="_blank" rel="external">skip pull image</a> <code>sam local start-api --skip-pull-image</code>。</p>
+<p>诶， 但mounting还是很慢，有没有<a href="[https://github.com/awslabs/aws-sam-cli/issues/239](https://github.com/awslabs/aws-sam-cli/issues/239">keep docker container warm</a>)的方法，看起来目前issue还是open状态，sam还不支持 keep warm。</p>
+</li>
+<li><p>关于sam local start-api 的 custom authorizer不能调试问题</p>
+<p>解决办法：目前来看sam local还不支持这个功能，但可以<a href="https://github.com/awslabs/aws-sam-cli/issues/137#issuecomment-380022819" target="_blank" rel="external">使用swagger来支持local的custom authorizers</a>，但使用swagger又会使template bloated，但sam看起来过不久会<a href="https://github.com/awslabs/aws-sam-cli/issues/137#issuecomment-574256770" target="_blank" rel="external">支持这个功能</a>。</p>
+</li>
+<li><p>每次修改代码sam build后才可以local start？</p>
+<p>解决办法：当代码有小改动或者调试时，可以直接在sam build后的<code>.aws-sam/build/</code>的输出文件下面改，此改动会立即生效，不用每次一次小改动后sam build在进行调试。当然这种方法也是有些危险的。有时候忘了把更改在build文件里面的内容复制到source文件进行代替，那么在重新build后原来的build里的更改会被替换掉。当然这种方法在代码的小改动后的调试啊什么的还是非常便捷的。</p>
+</li>
+<li><p>中国区使用Zappa+Flask</p>
+<p>问题：zappa是serverless python开发的神器，比使用sam来进行开发，其便捷性和效率提高了不少。但zappa目前还没有<a href="https://github.com/Miserlou/Zappa/issues/1977#issue-543761465" target="_blank" rel="external">支持中国区的开发</a>，虽然尝试了其里面<a href="https://github.com/Miserlou/Zappa/issues/1564#issuecomment-457826900" target="_blank" rel="external">issue</a>的一些方法更改core文件，虽然部署成功，但因为中国区的功能上有很多阉割的，所以还是会有一系列问题，更改core文件的代码，看起来不太可靠安全。而且Zappa好像还没有支持中国区的打算，可能此路走不通。</p>
+</li>
+<li><p>未完待续</p>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&text=aws中国区serverless相关issue总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&is_video=false&description=aws中国区serverless相关issue总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=aws中国区serverless相关issue总结&body=Check out this article: https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&title=aws中国区serverless相关issue总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://ybleeho.github.io/public/2020/04/11/aws-serverless相关issue总结/&name=aws中国区serverless相关issue总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 ybleeho
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
